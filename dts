@@ -1,0 +1,54 @@
+/ {
+	master_cmt: master_component {
+		compatible = "master,component";
+		status = "okay";
+
+		ports = <&cmt1 &cmt2>;
+	};
+
+	cmt1: component1 {
+		compatible = "slave1,component";
+		status = "okay";
+
+		port {
+			cmt1_out:endpoint {
+				remote-endpoint = <&cmt3_in>;
+			};
+		};
+	};
+
+	cmt2: component2 {
+		compatible = "slave2,component";
+		status = "okay";
+
+		port {
+			cmt2_out:endpoint {
+				remote-endpoint = <&cmt4_in>;
+			};
+		};
+	};
+
+
+	cmt3: component3 {
+		compatible = "slave3,component";
+		status = "okay";
+
+		port {
+			cmt3_in:endpoint {
+				remote-endpoint = <&cmt1_out>;
+			};
+		};
+	};
+
+	cmt4: component4 {
+		compatible = "slave4,component";
+		status = "okay";
+
+		port {
+			cmt4_in:endpoint {
+				remote-endpoint = <&cmt2_out>;
+			};
+		};
+	};
+};
+
